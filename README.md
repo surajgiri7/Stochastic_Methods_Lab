@@ -1,29 +1,11 @@
-# README #
+## sml_2022 ##
 
-This README would normally document whatever steps are necessary to get your application up and running.
+## Stochastic Methods Lab, Fall 2022, Jacobs University ##
 
-### What is this repository for? ###
+See the [course website](http://math.jacobs-university.de/petrat/teaching/2022_fall_stochastic_methods/) for more information.
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+Relevant Links:
 
-### How do I get set up? ###
+* For an introduction to using and properly setting up git, see [Introduction to git for academics](https://bitbucket.org/marcel_oliver/git_for_academics/)
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* For an introduction to Scientific Python, please read this [Introduction](https://mids.ku.de/oliver/teaching/scipy-intro/scipy-intro.pdf), written by Marcel Oliver ([html link](https://mids.ku.de/oliver/teaching/scipy-intro/scipy-intro/index.html)).
