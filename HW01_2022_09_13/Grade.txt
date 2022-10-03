@@ -1,0 +1,13 @@
+Total Points for HW1 : 20
+
+Comments : Your code is very well written and well commented.Keep it up.Please refrain from making any changes in comments or code after the deadline otherwise I will have to deduct marks from next time.
+
+Problem 1 : 8 Points
+
+Problem 2 : 4 Points
+
+Problem 3 : 5 Points 
+
+Problem 4 : 3 Points
+
+Total Points achieved : 20
