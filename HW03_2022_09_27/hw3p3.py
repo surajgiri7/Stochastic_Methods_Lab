@@ -13,7 +13,6 @@ Strike Price 100 $
 Plot Graph
 """
 
-from turtle import position
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt

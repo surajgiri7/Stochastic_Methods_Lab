@@ -5,7 +5,6 @@
 HW3 Problem 2
 """
 
-from joblib import PrintTime
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
