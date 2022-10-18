@@ -21,8 +21,7 @@ def binomial_tree(payoff, n, rp, sigma, S, K, T):
     Stock_Price_Lattice = S * u ** x * d ** y
 
     # Calculating the Payoff at the Expiry
-    payoff_vec = np.vectorize(payoff)
-    poff = payoff_vec(Stock_Price_Lattice, K=K)
+    poff = payoff(Stock_Price_Lattice, K=K)
 
     # Backward induction with a single for loop
     for i in np.arange(n, 0, -1):

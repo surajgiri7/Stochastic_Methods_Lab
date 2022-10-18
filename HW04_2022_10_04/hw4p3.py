@@ -12,11 +12,10 @@ def binomial_tree_EU(payoff, n, rp, sigma, S, K, T, opt):
 
     # Calculating a Stock Price Lattice for the Underlying Asset Price
     x, y = np.arange(0, n+1, 1), np.arange(n, -1, -1)
-    Stock_Price_Lattice = S * u ** x * d ** y
+    Stock_Price_Lattice = S * (u ** x) * (d ** y)
 
     # Calculating the Payoff at the Expiry
-    payoff_vec = np.vectorize(payoff)
-    poff = payoff_vec(S=Stock_Price_Lattice, K=K, opt=opt)
+    poff = payoff(S=Stock_Price_Lattice, K=K, opt=opt)
 
     # Backward induction with a single for loop
     for i in np.arange(n, 0, -1):
@@ -107,4 +106,3 @@ if __name__ == "__main__":
     plt.text(91,7,parameterTxt,verticalalignment='center', horizontalalignment='center', bbox=boxProp)
     
     plt.show()
-    
