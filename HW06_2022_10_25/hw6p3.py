@@ -48,7 +48,6 @@ if __name__ == "__main__":
     K = 0.8
     T = 1
     rp = mu
-    opt = 'C'
     S = 1
 
     BS = Black_Scholes(S, K, T, sigma, rp)
@@ -69,12 +68,18 @@ if __name__ == "__main__":
     # plotting the graph
     plt.figure()
     plt.loglog()
-    plt.plot(M, error, 'o-', label = 'Absolute Error')
+    plt.plot(M, error, label = 'Absolute Error')
     plt.xlabel('Number of Paths')
     plt.ylabel('Absolute Error')
     plt.title('Absolute Error between price of European call option as Monte-Carlo valuation of \n' + 
         'Geometric Brownian Motion and price from Black-Scholes formula', fontsize=10)
-    plt.plot([], [], ' ', label="Slope = " + str(slope))
+
+    # plotting the slope of convergence rate
+    plt.plot(M, np.exp(intercept) * M**slope, label = 'Convergence Rate')
+
+    # printing the slope inside the legend in the graph
+    plt.plot([], [], ' ', label="Slope of Convergence Rate = " + str(slope))
+
     plt.legend()
 
     # saving the figure
