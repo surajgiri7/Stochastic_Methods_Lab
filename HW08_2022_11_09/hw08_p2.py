@@ -67,7 +67,8 @@ if __name__ == "__main__":
     put = opt.puts # put data is not used in this program
 
     # get the current stock price
-    S = stock.history(period="1d")["Close"][0]
+    # S = stock.history(period="1d")["Close"][0]
+    S = stock.info["regularMarketPrice"]
     # get the strike price
     K = call["strike"]
     # get the market price
@@ -81,9 +82,9 @@ if __name__ == "__main__":
     # print(sigma)
     # print("==" * 20)
 
-    # plot the Current Strike price, and Historic Volatility from https://www.barchart.com/stocks/quotes/AAPL/volatility-greeks
+    # plot the Current Strike price, and Historic Volatility 
     plt.axvline(S, label = 'Current Stock Price', color = "blue")
-    plt.axhline(0.4640, linestyle = '-', label = 'Historic Volatility', color = "red")
+    plt.axhline(0.4637, linestyle = '-', label = 'Historic Volatility', color = "red") # Historic Volatility: 46.37% from https://www.barchart.com/stocks/quotes/AAPL/volatility-greeks
 
     # plot the implied volatility vs. strike price
     plt.plot(K, sigma, label="Implied Volatility", color="orange", marker="o")
