@@ -48,7 +48,7 @@ if __name__ == "__main__":
         
     # removing zeros from the array HT
     HT = HT[HT != 0.]
-    print(HT)
+    # print(HT)
     print("==" * 20)
 
     # print the expectation of hitting time
