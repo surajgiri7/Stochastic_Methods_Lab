@@ -50,7 +50,12 @@ if __name__ == "__main__":
     stock = yf.Ticker("AAPL") # Getting the stock data for Apple
 
     # Random expiration date
-    # exp = stock.options[random.randint(0, len(stock.options)-1)]
+    # exp = stock.options[random.randint(0, len(stock.options)-1)] 
+
+    """
+    setting random expiration date sometimes used Sundays for the Expiration date
+    which provided some weird graohs so I decided to use a specific non-Sunday date
+    """
     # setting the expiration date to a 2023-02-17 [You can change the date here!]
     exp = "2023-02-17"
 
