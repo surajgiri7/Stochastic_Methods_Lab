@@ -64,7 +64,7 @@ if __name__ == "__main__":
     # get the call data
     call = opt.calls
     # get the put data
-    put = opt.puts
+    put = opt.puts # put data is not used in this program
 
     # get the current stock price
     S = stock.history(period="1d")["Close"][0]
