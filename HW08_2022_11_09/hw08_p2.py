@@ -81,7 +81,7 @@ if __name__ == "__main__":
     # print(sigma)
     # print("==" * 20)
 
-    # plot the Current Strike price and Historic Volatility from https://www.barchart.com/stocks/quotes/AAPL/volatility-greeks
+    # plot the Current Strike price, and Historic Volatility from https://www.barchart.com/stocks/quotes/AAPL/volatility-greeks
     plt.axvline(S, label = 'Current Stock Price', color = "blue")
     plt.axhline(0.4640, linestyle = '-', label = 'Historic Volatility', color = "red")
 
