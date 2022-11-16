@@ -81,8 +81,12 @@ if __name__ == "__main__":
     # print(sigma)
     # print("==" * 20)
 
-    # plot the implied volatility for each strike price
-    plt.plot(K, sigma, label="Implied Volatility", color="red", marker="o")
+    # plot the Current Strike price and Historic Volatility from https://www.barchart.com/stocks/quotes/AAPL/volatility-greeks
+    plt.axvline(S, label = 'Current Stock Price', color = "blue")
+    plt.axhline(0.4640, linestyle = '-', label = 'Historic Volatility', color = "red")
+
+    # plot the implied volatility vs. strike price
+    plt.plot(K, sigma, label="Implied Volatility", color="orange", marker="o")
     plt.xlabel("Strike Price")
     plt.ylabel("Implied Volatility")
     plt.title("Implied Volatility vs. Strike Price")
