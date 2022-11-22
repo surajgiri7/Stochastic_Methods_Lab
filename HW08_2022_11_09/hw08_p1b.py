@@ -46,7 +46,6 @@ def EulerMaruyama(w,mu, sigma, S_0, T, N):
         # W_i = np.random.normal(0, np.sqrt(dt)) # 
         # S[i] = (S[i-1]) + (mu * S[i-1] * dt) + (sigma * S[i-1] * (w[i] - w[i-1]))
         S[i] = (S[i-1] + (((2*S[i-1]/(1+t[i-1])) - mu*np.arccos(S[i-1]/(1+t[i-1])**2)*(np.sqrt((1+t[i-1])**4 - S[i-1]**2)) - (sigma**2/2)*S[i-1]*(np.arccos(S[i-1]/(1+t[i-1])**2))**2) *dt - sigma*np.arccos(S[i-1]/(1+t[i-1])**2)*(np.sqrt((1+t[i-1])**4 - S[i-1]**2)*(w[i] - w[i-1])) ) )
-
         # S[i] = (S[i-1] + (((2*S[i-1]/(1+t[i-1])) - mu*np.arccos(S[i-1]/(1+t[i-1])**2)(np.sqrt((1+t[i-1])**4 )))))
 
     return S

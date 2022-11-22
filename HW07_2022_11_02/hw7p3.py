@@ -65,5 +65,5 @@ if __name__ == "__main__":
     # saving the figure
     if not os.path.exists('plots'):
         os.makedirs('plots')
-    plt.savefig('plots/hw7p3.pdf')
+    # plt.savefig('plots/hw7p3.pdf')
     plt.show()
