@@ -4,7 +4,7 @@ save_data_on_exit = True
 save_history = True
 save_non_project_files = False
 project_type = 'empty-project-type'
-recent_files = ['HW08_2022_11_09/hw08_p2.py']
+recent_files = ['HW08_2022_11_09/hw08_p2.py', 'HW07_2022_11_02/hw7p1a.py', 'HW06_2022_10_25/hw6p2b.py', 'HW06_2022_10_25/hw6p2a.py', 'HW06_2022_10_25/hw6p1.py', 'HW06_2022_10_25/hw6p4.py', 'HW06_2022_10_25/hw6p3.py']
 
 [main]
 version = 0.2.0

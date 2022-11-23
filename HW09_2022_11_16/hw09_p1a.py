@@ -19,8 +19,8 @@ happens when c is near zero or c is near 1.
 """
 Theorectical answer:
 When c is near 0, Exponential Ornstein Uhlenbeck process is the same with GBM.
-When c is near 1, Exponential Ornstein Uhlenbeck process has smaller range of s, 
-but the similar drift and variance behavior.
+When c is near 1, Exponential Ornstein Uhlenbeck process the mu term becomes less than 0, 
+but the similar mean and variance behavior, leading to the Expnoential Decay.
 """
 
 import os
@@ -32,7 +32,7 @@ import matplotlib.pyplot as plt
 def Ornstein_Uhlenbeck(M, N, T, mu, sigma, c):
     # M = 1000 at least
     dt = T/N
-    X_0 = 1
+    X_0 = 1 # choosing intial value of X_0 = 1 (a positive value)
     dW = np.random.normal(scale=np.sqrt(dt), size=(M, N-1))
     dX = mu * (1 - c * np.log(X_0)) * X_0 * dt + sigma * X_0 * dW
     X = np.insert(dX, 0, X_0, axis=1)
@@ -81,5 +81,5 @@ if __name__ == "__main__":
 
     if not os.path.exists("./plots"):
         os.makedirs("plots")
-    plt.savefig("plots/hw09_p1a.pdf")
+    # plt.savefig("plots/hw09_p1a.pdf")
     plt.show()
