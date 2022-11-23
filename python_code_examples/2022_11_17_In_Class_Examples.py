@@ -3,6 +3,7 @@
 """
 Color plotting of arrays and masks
 """
+from pylab import *
 
 # General stuff
 
@@ -11,6 +12,8 @@ S = arange(0,13)
 print(ones_like(S))
 print(ones(len(S)))
 
+print(arange(6)[:,newaxis])
+print(arange(6)[newaxis,:])
 A = arange(6)[:,newaxis]>arange(6)[newaxis,:]
 
 print(A)
@@ -20,8 +23,6 @@ print(B,roll(B,2))
 
 
 # Color plots of arrays
-
-from pylab import *
 
 n = 10
 
