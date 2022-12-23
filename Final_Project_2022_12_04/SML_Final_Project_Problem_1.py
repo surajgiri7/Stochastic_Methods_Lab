@@ -273,7 +273,7 @@ A. Black-Scholes formula
         2. It is easy to implement and fast.
         3. It is widely accepted as a benchmark for option pricing
         4. It is computationally efficient, making it suitable for use in real-time option pricing applications
-        4. It is easy to understand.
+        5. It is easy to understand.
     Disadvantages:
         1. It can only be used to price European options on underlying assets with no dividends or other complex features.
         2. It can be sensitive to the input parameters, such as the underlying asset's price, volatility, and time to expiration.
