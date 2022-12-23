@@ -333,7 +333,9 @@ D. Finite difference method
         4. It can't be used in situations where the underlying asset's price depends on historical data.
         5. It can be computationally intensive sometimes.
 
-E. Partial differential equation
+E. Partial differential equation (This is generally not considered a way to find the solution. 
+                                    Rather it is a way to model the problem.
+                                    The model is then solved using Finite Difference Method.)
     Advantages:
         1. It is suitable for options with long maturities.
         2. It is suitable for options with high volatility.
