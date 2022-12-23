@@ -39,12 +39,13 @@ import statsmodels.api as sm
 import os
 
 # Importing the dataset
+stock = "META"
 start = dt.datetime(2017, 12, 12)
 end = dt.datetime(2022, 12, 22)
-df = yf.download('META', start=start, end=end) 
+df = yf.download(stock, start=start, end=end) 
 df = df.dropna()
 stock_price = df['Close']
-print(stock_price)
+# print(stock_price)
 
 # calculating the log returns
 log_returns = np.log(stock_price / stock_price.shift(1))
@@ -56,21 +57,23 @@ if not os.path.exists("plots"):
 
 # visualizing the stock price and log returns
 plt.figure(figsize=(10, 5))
-plt.title('Stock Price and Log Returns of the Stock')
+plt.title('Stock Price and Log Returns of the Stock ' + stock)
 plt.xlabel('Time')
 plt.ylabel('Stock Price')
 plt.plot(stock_price, color='blue', label='Stock Price')
 plt.plot(log_returns, color='red', label='Log Returns')
 plt.legend()
+plt.grid()
 plt.savefig("plots/Stock_and_Log_Return_Visualization.pdf")
 plt.show()
 
 # visualizing the log returns
 plt.figure(figsize=(10, 5))
 plt.plot(log_returns)
-plt.title('Log Returns')
+plt.title('Log Returns for the Stock ' + stock)
 plt.xlabel('Time')
 plt.ylabel('Log Returns')
+plt.grid()
 plt.savefig("plots/Log_Returns_Visualization.pdf")
 plt.show()
 
@@ -81,18 +84,20 @@ std = log_returns.std()
 # visualizing the normal distribution of the log returns
 plt.figure(figsize=(10, 5))
 plt.hist(log_returns, bins=50, density=True)
-plt.title('Normal Distribution of Log Returns')
+plt.title('Normal Distribution of Log Returns for the Stock ' + stock)
 plt.xlabel('Log Returns')
 plt.ylabel('Frequency')
 plt.plot(np.linspace(-0.1, 0.1, 100), 1 / (std * np.sqrt(2 * np.pi)) * np.exp(-0.5 * (1 / std * (np.linspace(-0.1, 0.1, 100) - mean)) ** 2), color='red')
+plt.grid()
 plt.savefig("plots/Normal_Distribution_of_Log_Returns_Visualization.pdf")
 plt.show()
 
 # visualizing the autocorrelation of the log returns
 plot_acf(log_returns, lags=50)
-plt.title('Autocorrelation of Log Returns')
+plt.title('Autocorrelation of Log Returns of the Stock ' + stock)
 plt.xlabel('Lags')
 plt.ylabel('Autocorrelation')
+plt.grid()
 plt.savefig("plots/Autocorrelation_of_Log_Returns_Visualization.pdf")
 plt.show()
 
@@ -104,10 +109,11 @@ print("|||||" * 6)
 
 # plotting the QQ plot of the log returns
 sm.qqplot(log_returns, line='s')
-plt.title('QQ Plot of Log Returns')
+plt.title('QQ Plot of Log Returns of the Stock ' + stock)
 plt.xlabel('Theoretical Quantiles')
 plt.ylabel('Sample Quantiles')
 plt.legend()
+plt.grid()
 plt.savefig("plots/QQ_Plot_of_Log_Returns_Visualization.pdf")
 plt.show()
 
@@ -175,7 +181,7 @@ def payoff(S, K, option_type):
 
 # defining the funtion for outputting the strike price, calculated option price and actual option price
 def output_c(T, exp_date):
-    option = yf.Ticker("META")
+    option = yf.Ticker(stock)
     exp_date = exp_date
     option_type = 'call'
     option_data = option.option_chain(exp_date)
@@ -241,16 +247,18 @@ plt.plot(strike_price1, call_price_actual1, label='actual option price')
 plt.plot(strike_price1, option_price1, label='calculated option price')
 plt.xlabel('strike price')
 plt.ylabel('option price')
-plt.title('Option price for ' + exp_dates[0])
+plt.title('Option price for ' + stock + ' expiring on ' + exp_dates[0])
 plt.legend()
+plt.grid()
 
 plt.subplot(1, 2, 2)
 plt.plot(strike_price2, call_price_actual2, label='actual option price')
 plt.plot(strike_price2, option_price2, label='calculated option price')
 plt.xlabel('strike price')
 plt.ylabel('option price')
-plt.title('Option price for ' + exp_dates[1])
+plt.title('Option price for ' + stock + ' expiring on ' + exp_dates[1])
 plt.legend()
+plt.grid()
 plt.savefig("plots/Actual_Option_Price_vs_Calculated_Option_Price_Visualization.pdf")
 plt.show()
 
