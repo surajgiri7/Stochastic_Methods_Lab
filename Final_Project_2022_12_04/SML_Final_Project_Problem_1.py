@@ -1,15 +1,17 @@
 """
 Author: Suraj Giri
 Date: 2022-12-22
-Program: Stochastic Methods Lab final Project
+Program: Stochastic Methods Lab final Project Problem 1
 """
 
 """
-Problem:
+Problem 1:
 Choose a stock for which you can find recent time series data as well as quotes on
 European call or put options for different parameters. (For the option quotes, choose at
 least two reasonably different maturities, and 30 different strike prices for each maturity.)
+"""
 
+"""
 a. Analyze the time series: How good is the assumption of normally and independently
 distributed log-returns? Estimate the volatility of the stock. Comment on the results.
 """
@@ -34,6 +36,7 @@ from statsmodels.graphics.tsaplots import plot_acf
 from scipy.stats import norm
 import math
 import statsmodels.api as sm
+import os
 
 # Importing the dataset
 start = dt.datetime(2017, 12, 12)
@@ -47,6 +50,10 @@ print(stock_price)
 log_returns = np.log(stock_price / stock_price.shift(1))
 log_returns = log_returns.dropna()
 
+# creating the folder to save the plots
+if not os.path.exists("plots"):
+        os.makedirs("plots")
+
 # visualizing the stock price and log returns
 plt.figure(figsize=(10, 5))
 plt.title('Stock Price and Log Returns of the Stock')
@@ -55,6 +62,7 @@ plt.ylabel('Stock Price')
 plt.plot(stock_price, color='blue', label='Stock Price')
 plt.plot(log_returns, color='red', label='Log Returns')
 plt.legend()
+plt.savefig("plots/Stock_and_Log_Return_Visualization.pdf")
 plt.show()
 
 # visualizing the log returns
@@ -63,6 +71,7 @@ plt.plot(log_returns)
 plt.title('Log Returns')
 plt.xlabel('Time')
 plt.ylabel('Log Returns')
+plt.savefig("plots/Log_Returns_Visualization.pdf")
 plt.show()
 
 # calculating the mean and standard deviation of the log returns
@@ -76,6 +85,7 @@ plt.title('Normal Distribution of Log Returns')
 plt.xlabel('Log Returns')
 plt.ylabel('Frequency')
 plt.plot(np.linspace(-0.1, 0.1, 100), 1 / (std * np.sqrt(2 * np.pi)) * np.exp(-0.5 * (1 / std * (np.linspace(-0.1, 0.1, 100) - mean)) ** 2), color='red')
+plt.savefig("plots/Normal_Distribution_of_Log_Returns_Visualization.pdf")
 plt.show()
 
 # visualizing the autocorrelation of the log returns
@@ -83,11 +93,14 @@ plot_acf(log_returns, lags=50)
 plt.title('Autocorrelation of Log Returns')
 plt.xlabel('Lags')
 plt.ylabel('Autocorrelation')
+plt.savefig("plots/Autocorrelation_of_Log_Returns_Visualization.pdf")
 plt.show()
 
 # calculating the volatility of the stock
 volatility = sigma = std * np.sqrt(math.log(2,len(log_returns)))
+print("|||||" * 6)
 print('The volatility of the stock is: ', volatility)
+print("|||||" * 6)
 
 # plotting the QQ plot of the log returns
 sm.qqplot(log_returns, line='s')
@@ -95,20 +108,12 @@ plt.title('QQ Plot of Log Returns')
 plt.xlabel('Theoretical Quantiles')
 plt.ylabel('Sample Quantiles')
 plt.legend()
+plt.savefig("plots/QQ_Plot_of_Log_Returns_Visualization.pdf")
 plt.show()
 
-
-# normal = np.sort(np.random.normal(0, 1, len(log_returns)))
-# log_returns = np.sort(log_returns)
-
-# # qq plot of the log returns
-# plt.plot(normal,normal,label='theoretical quantiles')
-# plt.plot(normal,log_returns,label='log-returns sample')
-# plt.xlabel('theoretical quantiles')
-# plt.ylabel('sample quantiles')
-# plt.title(r'QQ-plot of log-returns sample')
-# plt.legend()
-# plt.show()
+"""
+The volatility of the stock is:  0.00867442848387263
+"""
 
 """
 b. Determine a suitable risk-free interest rate for pricing the options for which you found
@@ -117,6 +122,9 @@ quotes. (Note: A very rough interpolation, if necessary, will suffice.)
 
 """
 b. Solution:
+------------
+Here, we are interpolating the risk-free interest rate from the website
+http://www.worldgovernmentbonds.com/country/united-states/#:~:text=Yield%20Curve%20is%20inverted%20in,probability%20of%20default%20is%200.42%25.
 """
 # interpolating the risk-free interest rate from 
 # http://www.worldgovernmentbonds.com/country/united-states/#:~:text=Yield%20Curve%20is%20inverted%20in,probability%20of%20default%20is%200.42%25.
@@ -124,7 +132,14 @@ date = [1/12, 2/12, 3/12, 4/12, 5/12, 6/12, 7/12, 8/12, 9/12]
 r = [3.7, 4.05, 4.33, 4.67, 4.65, 4.24, 4.01, 3.78, 3.76]
 r = np.interp(56/365, date, r)
 r = r / 100
+print("|||||" * 6)
 print('The risk-free interest rate is: ', r)
+print("|||||" * 6)
+
+
+"""
+The interpolated risk-free interest rate is:  0.039943835616438356
+"""
 
 """
 c. Price the options with an algorithm of your choice for all maturities and strike prices
@@ -134,7 +149,12 @@ result, and possibly explain deviations.
 
 """
 c. Solution:
-Here, we saw that 
+------------
+Here, we saw that the Black-Scholes model is a good approximation for the option price when time to maturity is
+relatively short. However, when time to maturity is longer, the difference between the option price derived from
+Black-Scholes model and the quotes becomes more obvious. This is because the Black-Scholes model assumes that
+the stock price follows a geometric Brownian motion. When we zoom in enough, we can see that the option price
+derived from Black-Scholes is higher than quotes. 
 """
 # calculating the Black-Scholes option price
 def black_scholes_formula(S, K, T, r, sigma, option_type):
@@ -199,10 +219,22 @@ T = [56/365, 180/365]
 strike_price1, option_price1, call_price_actual1 = output_c(T[0], exp_dates[0])
 strike_price2, option_price2, call_price_actual2 = output_c(T[1], exp_dates[1])
 
- 
+print("|||||" * 6)
+# printing the calculated option price and actual option price for each strike price in a table
+print("Option price for maturity on " + exp_dates[0])
+print('Strike Price \t Calculated Option Price \t Actual Option Price')
+for i in range(len(strike_price1)):
+    print(f'{strike_price1[i]}\t\t{option_price1[i]}\t\t\t{call_price_actual1[i]}')
+print("|||||" * 6)
+# printing the calculated option price and actual option price for each strike price in a table
+print("Option price for maturity on " + exp_dates[1])
+print('Strike Price \t Calculated Option Price \t Actual Option Price')
+for i in range(len(strike_price1)):
+    print(f'{strike_price2[i]}\t\t{option_price2[i]}\t\t\t{call_price_actual2[i]}')
+print("|||||" * 6)
+
 
 # plotting the actual option price and the calculated option price for each expiration date in a subplot
-print(option_price1)
 plt.figure(figsize=(10, 5))
 plt.subplot(1, 2, 1)
 plt.plot(strike_price1, call_price_actual1, label='actual option price')
@@ -219,7 +251,7 @@ plt.xlabel('strike price')
 plt.ylabel('option price')
 plt.title('Option price for ' + exp_dates[1])
 plt.legend()
-
+plt.savefig("plots/Actual_Option_Price_vs_Calculated_Option_Price_Visualization.pdf")
 plt.show()
 
 
