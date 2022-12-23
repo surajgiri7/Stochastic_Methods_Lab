@@ -34,7 +34,7 @@ if __name__ == "__main__":
     plt.scatter(sorted_normal_sample, sorted_binomial_sample, s=5, c='g', label='Q-Q Plot')
     plt.legend()
     plt.grid(linestyle='--')
-    plt.savefig('hw5p4.pdf')
+    # plt.savefig('hw5p4.pdf')
     plt.show()
 
 """
