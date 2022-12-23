@@ -267,45 +267,76 @@ in the source code.)
 """
 d. Solution:
 The methods for finding option prices that were discussed in class with their advantages and disadvantages are:
-1. Black-Scholes formula
+A. Black-Scholes formula
     Advantages:
         1. It is the most widely used method for finding option prices.
-        2. It is easy to implement.
-        3. It is easy to understand.
+        2. It is easy to implement and fast.
+        3. It is widely accepted as a benchmark for option pricing
+        4. It is computationally efficient, making it suitable for use in real-time option pricing applications
+        4. It is easy to understand.
     Disadvantages:
-        1. It is not suitable for options with long maturities.
-        2. It is not suitable for options with high volatility.
-        3. It is not suitable for options with high dividends.
-2. Monte Carlo simulation
+        1. It can only be used to price European options on underlying assets with no dividends or other complex features.
+        2. It can be sensitive to the input parameters, such as the underlying asset's price, volatility, and time to expiration.
+        3. It is not suitable for options with long maturities.
+        4. It is not suitable for options with high volatility.
+        5. It is not suitable for options with high dividends.
+
+B. Monte Carlo simulation
+    Advantages:
+        1. It can be used to price a wide range of options, including both European and American options,
+            as well as options on assets with complex features such as dividends or early exercise
+        2. It is suitable for options with long maturities.
+        3. It can predict accurate option prices when the simulation is run with large iterations.
+        4. It is suitable for options with high volatility.
+        5. It is suitable for options with high dividends.
+    Disadvantages:
+        1. It can be computationally intensive, i.e might take longer time to compute the option prices, 
+            especially when the simulation is run with a large number of iterations.
+        2. It can be sensitive to the input parameters and early execising options.
+        3. It is not easy to implement.
+        4. It can be uneasy to understand sometimes.
+
+C. Binomial tree
+    Advantages:
+        1. It is relatively simple to implement and does not require a strong background in mathematics.
+        2. It can produce accurate option prices, especially when the tree is constructed with a large number of time steps.
+        3. It is relatively fast and efficient.
+        4. It is suitable for options with long maturities.
+        5. It is suitable for options with high volatility.
+        6. It is suitable for options with high dividends.
+    Disadvantages:
+        1. It can be computationally intensive, especially when the tree is constructed with a large number of time steps and variables.
+        2. It may not be as accurate as other methods, especially for problems with
+           large numbers of steps or when the underlying market variables exhibit significant changes over time.
+        3. It can be difficult to implement sometimes.
+        4. It can be uneasy to understand sometimes.
+         
+D. Finite difference method
     Advantages:
         1. It is suitable for options with long maturities.
         2. It is suitable for options with high volatility.
         3. It is suitable for options with high dividends.
+        4. It does not require the use of advanced mathematical techniques, such as partial differential equations.
+        5. It is relatively fast and efficient
     Disadvantages:
-        1. It is not easy to implement.
-        2. It is not easy to understand.
-3. Binomial tree
+        1. It can be prone to numerical errors, particularly when the grid size is not sufficiently small.
+        2. It may not be accurate when the solution to the PDE exhibits sharp transitions or discontinuities.
+        3. It is not easy to understand.
+        4. It can't be used in situations where the underlying asset's price depends on historical data.
+        5. It can be computationally intensive sometimes.
+
+E. Partial differential equation
     Advantages:
         1. It is suitable for options with long maturities.
         2. It is suitable for options with high volatility.
         3. It is suitable for options with high dividends.
+        4. It provides a rigorous mathematical framework for the pricing of options.
+        5. It can often yield highly accurate solutions
+        6. It is relatively fast and efficient.
     Disadvantages:
-        1. It is not easy to implement.
-        2. It is not easy to understand.
-4. Finite difference method
-    Advantages:
-        1. It is suitable for options with long maturities.
-        2. It is suitable for options with high volatility.
-        3. It is suitable for options with high dividends.
-    Disadvantages:
-        1. It is not easy to implement.
-        2. It is not easy to understand.
-5. Partial differential equation
-    Advantages:
-        1. It is suitable for options with long maturities.
-        2. It is suitable for options with high volatility.
-        3. It is suitable for options with high dividends.
-    Disadvantages:
-        1. It is not easy to implement.
-        2. It is not easy to understand.
+        1. It is complex to implement.
+        2. It is complex to understand.
+        3. It can be sensitive to the input parameters.
+        4. It relies on several assumptions, such as the absence of arbitrage opportunities, 
+            which may not always be true.
 """
