@@ -1,0 +1,54 @@
+#
+# ----------------Problem 1----------------
+#
+# General:
+# - single working program + input data files: 2 out of 4 points
+# (Input data files missing.)
+#
+# Choice of a good stock:
+# - found a suitable stock: 3 out of 3 points
+# - enough data: 4 out of 4 points
+# - handling csv files: 2 out of 3 points
+# (csv files missing, which makes your results hard to reproduce.)
+#
+# (a) Time Series:
+# - normally distributed? (QQ plot): 3 out of 4 points
+# (Plot discussion missing.)
+# - independently distributed? (autocorrelation plot): 4 out of 4 points
+# - volatility estimates, for different maturities: 4 out of 8 points
+# (The volatilities should be estimated with data corresponding to the maturities of the options. Also, why is there a log in the formula, this leads to a wrong volatility.)
+#
+# (b) Risk-free interest rate:
+# - right rate from ECB or US treasury (or other suitable source): 5 out of 5 points
+# - interpolation (if necessary): 1 out of 1 point
+#
+# (c) Option pricing:
+# - working pricing algorithm: 7 out of 7 points
+# - evaluated different maturities and strike prices: 4 out of 4 points
+# - good comparison to data (e.g., plots) and discussion: 12 out of 15 points
+# (Current stock price missing for comparison. Data points should not be connected! In second plot the strike prices are unrealistically high so one cannot see the relevant area around the current stock price. Explanations missing.)
+#
+# (d) Option Pricing Methods:
+# - list of methods: 4 out of 4 points
+# - list of advantages/disadvantages: 2 out of 4 points
+# (Monte-Carlo: computational efficiency is an advantage! Binomial tree and finite difference method: explanations very imprecise.)
+# Note: At least the following methods and advantages/disadvantages were discussed in class:
+# -- Binomial tree (very versatile)
+# -- Black-Scholes formula (very efficient, but must be modified for options other than European calls)
+# -- Monte-Carlo method (usually very efficient)
+# -- Black-Scholes equation (works for different payoffs)
+#
+# Total points: 57 out of 70 points
+#
+#
+#
+# ----------------Problem 2----------------
+#
+# - general format and presentation: 6 out of 6 points
+# - understanding of the concepts (relative to the difficulty of the topic): 7 out of 12 points
+# (Stopping rule on diagonal not clearly explained. Discussion of 0 option prices, and thus explanation of the diagonal missing. Speed improvement of method not clearly discussed. Not clear how the option is priced in the end.)
+# - explanation of connection to class content: 4 out of 6 points
+# (Ok, but a bit unclear, e.g.: "Traversing via the Binomial Tree is the simplest method for pricing options." This is not necessarily so.)
+# - use of own words: 6 out of 6 points
+#
+# Total points: 23 out of 30 points
